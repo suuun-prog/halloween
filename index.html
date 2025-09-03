@@ -10,8 +10,7 @@
 
   <style>
     body {
-      background: url('https://cdn.pixabay.com/photo/2019/10/10/15/58/halloween-4538826_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #2b0033; /* ハロウィンぽい背景色 */
       color: #fffacd;
       font-family: 'Yusei Magic', sans-serif;
       text-align: center;
@@ -56,21 +55,25 @@
 
     img[class^="img-"] {
       position: absolute;
-      width: 220px;
+      width: 200px;
       z-index: 0;
       pointer-events: none;
     }
 
-    /* ジグザグ配置 */
-    .img-1 { top: 0; left: 0; }
-    .img-2 { top: 0; right: 0; }
-    .img-3 { bottom: 0; left: 0; }
-    .img-4 { bottom: 0; right: 0; }
+    .img-1 { top: 30px; left: 30px; }
+    .img-2 { top: 150px; right: 30px; }
+    .img-3 { bottom: 150px; left: 50px; }
+    .img-4 { bottom: 30px; right: 30px; }
 
     @media (max-width: 600px) {
       img[class^="img-"] {
-        width: 160px;
+        width: 140px;
       }
+
+      .img-1 { top: 10px; left: 10px; }
+      .img-2 { top: 100px; right: 10px; }
+      .img-3 { bottom: 100px; left: 20px; }
+      .img-4 { bottom: 10px; right: 10px; }
 
       h1 {
         font-size: 28px;
@@ -90,7 +93,7 @@
 </head>
 <body>
 
-  <!-- イラスト（ジグザグに配置） -->
+  <!-- イラスト（新しいジグザグ配置） -->
   <img src="neko.png" class="img-1" alt="猫">
   <img src="daiku.png" class="img-2" alt="大工">
   <img src="inu.png" class="img-3" alt="犬">
@@ -109,7 +112,6 @@
         { text: "🍬 ボーナス！", weight: 20 }
       ];
 
-      // 重みによって抽選
       const weighted = [];
       results.forEach(item => {
         for (let i = 0; i < item.weight; i++) {
