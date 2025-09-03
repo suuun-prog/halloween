@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ←追加 -->
   <title>くじ引きイベント</title>
   <style>
     body {
@@ -9,15 +10,21 @@
       color: #ffa500;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 50px 20px;
       position: relative;
       overflow: hidden;
-      height: 100vh;
+      min-height: 100vh;
+      font-size: 18px; /* ←文字サイズUP */
+    }
+
+    h1 {
+      font-size: 28px; /* ←タイトルサイズUP */
+      margin-bottom: 40px;
     }
 
     img[class^="img-"] {
       position: absolute;
-      width: 80px;
+      width: 60px; /* ←以前は80px */
       z-index: 10;
     }
 
@@ -32,37 +39,28 @@
     }
 
     .img-bottom-left {
-      bottom: 10px;
+      bottom: 20px; /* ←余裕を持たせた */
       left: 10px;
     }
 
     .img-bottom-right {
-      bottom: 10px;
+      bottom: 20px;
       right: 10px;
     }
 
-    /* ボタンと結果の中央配置 */
-    .lottery-container {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 5;
-    }
+    /* スマホ用の画像サイズさらに調整したい場合 */
+    @media (max-width: 600px) {
+      img[class^="img-"] {
+        width: 50px;
+      }
 
-    button {
-      font-size: 24px;
-      padding: 15px 30px;
-      background-color: orange;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+      h1 {
+        font-size: 24px;
+      }
 
-    #result {
-      margin-top: 30px;
-      font-size: 28px;
-      font-weight: bold;
+      body {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -70,30 +68,11 @@
 
   <h1>くじ引きイベント🎃</h1>
 
-  <!-- くじボタン＆結果表示 -->
-  <div class="lottery-container">
-    <button onclick="drawLottery()">くじを引く！</button>
-    <div id="result"></div>
-  </div>
-
   <!-- 四隅に画像 -->
-  <img src="neko.png" class="img-top-left" alt="猫" width="80">
-  <img src="daiku.png" class="img-top-right" alt="大工" width="80">
-  <img src="inu.png" class="img-bottom-left" alt="犬" width="80">
-  <img src="onna.png" class="img-bottom-right" alt="女" width="80">
-
-  <script>
-    function drawLottery() {
-      const results = [
-        "🎉 大当たり！おめでとう！",
-        "😊 当たり！ラッキー！",
-        "😅 まあまあ…もう1回！",
-        "😢 ハズレ…次に期待！"
-      ];
-      const index = Math.floor(Math.random() * results.length);
-      document.getElementById("result").innerText = results[index];
-    }
-  </script>
+  <img src="neko.png" class="img-top-left" alt="猫">
+  <img src="daiku.png" class="img-top-right" alt="大工">
+  <img src="inu.png" class="img-bottom-left" alt="犬">
+  <img src="onna.png" class="img-bottom-right" alt="女">
 
 </body>
 </html>
