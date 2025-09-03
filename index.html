@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>くじ引きイベント</title>
+  <title>ハロウィンくじ</title>
+
+  <!-- POPなフォント：Yusei Magic（Google Fonts） -->
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background-color: #1c1c1c;
-      color: #ffa500;
-      font-family: 'Arial', sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2019/10/10/15/58/halloween-4538826_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fffacd;
+      font-family: 'Yusei Magic', sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
@@ -23,20 +28,22 @@
 
     h1 {
       font-size: 36px;
-      margin-top: 200px; /* 上画像と重ならないように */
+      margin-top: 200px;
       margin-bottom: 40px;
       z-index: 1;
+      text-shadow: 2px 2px 4px #000;
     }
 
     button {
-      background-color: #ffa500;
-      color: #1c1c1c;
+      background-color: #ff9900;
+      color: #fff;
       border: none;
-      padding: 24px 48px;
+      padding: 20px 40px;
       font-size: 24px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       z-index: 1;
+      box-shadow: 2px 2px 6px #000;
     }
 
     #result {
@@ -44,38 +51,25 @@
       font-size: 28px;
       font-weight: bold;
       z-index: 1;
+      text-shadow: 1px 1px 3px #000;
     }
 
     img[class^="img-"] {
       position: absolute;
-      width: 220px;  /* 🔥 ここを大きく */
+      width: 220px;
       z-index: 0;
-      pointer-events: none; /* タップしても邪魔しない */
+      pointer-events: none;
     }
 
-    .img-top-left {
-      top: 0;
-      left: 0;
-    }
-
-    .img-top-right {
-      top: 0;
-      right: 0;
-    }
-
-    .img-bottom-left {
-      bottom: 0;
-      left: 0;
-    }
-
-    .img-bottom-right {
-      bottom: 0;
-      right: 0;
-    }
+    /* ジグザグ配置 */
+    .img-1 { top: 0; left: 0; }
+    .img-2 { top: 0; right: 0; }
+    .img-3 { bottom: 0; left: 0; }
+    .img-4 { bottom: 0; right: 0; }
 
     @media (max-width: 600px) {
       img[class^="img-"] {
-        width: 160px; /* スマホでも大きめ */
+        width: 160px;
       }
 
       h1 {
@@ -85,7 +79,7 @@
 
       button {
         font-size: 20px;
-        padding: 18px 36px;
+        padding: 16px 32px;
       }
 
       #result {
@@ -96,21 +90,35 @@
 </head>
 <body>
 
-  <!-- 四隅のイラスト -->
-  <img src="neko.png" class="img-top-left" alt="猫">
-  <img src="daiku.png" class="img-top-right" alt="大工">
-  <img src="inu.png" class="img-bottom-left" alt="犬">
-  <img src="onna.png" class="img-bottom-right" alt="女">
+  <!-- イラスト（ジグザグに配置） -->
+  <img src="neko.png" class="img-1" alt="猫">
+  <img src="daiku.png" class="img-2" alt="大工">
+  <img src="inu.png" class="img-3" alt="犬">
+  <img src="onna.png" class="img-4" alt="女">
 
-  <h1>くじ引きイベント🎃</h1>
+  <h1>🎃 ハロウィンくじ</h1>
   <button onclick="drawLottery()">くじを引く</button>
   <div id="result"></div>
 
   <script>
     function drawLottery() {
-      const results = ["🎉 大当たり！", "🎯 当たり！", "😢 はずれ", "🔁 もう一回チャレンジ！"];
-      const randomIndex = Math.floor(Math.random() * results.length);
-      document.getElementById("result").textContent = results[randomIndex];
+      const results = [
+        { text: "🎁 シークレット！", weight: 10 },
+        { text: "✨ スペシャル！", weight: 20 },
+        { text: "🎃 ノーマル！", weight: 50 },
+        { text: "🍬 ボーナス！", weight: 20 }
+      ];
+
+      // 重みによって抽選
+      const weighted = [];
+      results.forEach(item => {
+        for (let i = 0; i < item.weight; i++) {
+          weighted.push(item.text);
+        }
+      });
+
+      const randomIndex = Math.floor(Math.random() * weighted.length);
+      document.getElementById("result").textContent = weighted[randomIndex];
     }
   </script>
 
