@@ -22,8 +22,8 @@
     }
 
     h1 {
-      font-size: 32px;
-      margin-top: 100px;
+      font-size: 36px;
+      margin-top: 200px; /* 上画像と重ならないように */
       margin-bottom: 40px;
       z-index: 1;
     }
@@ -32,70 +32,71 @@
       background-color: #ffa500;
       color: #1c1c1c;
       border: none;
-      padding: 18px 36px;
-      font-size: 22px;
+      padding: 24px 48px;
+      font-size: 24px;
       border-radius: 10px;
       cursor: pointer;
       z-index: 1;
     }
 
     #result {
-      margin-top: 30px;
-      font-size: 26px;
+      margin-top: 40px;
+      font-size: 28px;
       font-weight: bold;
       z-index: 1;
     }
 
     img[class^="img-"] {
       position: absolute;
-      width: 120px; /* ←画像を大きく */
-      z-index: 0;   /* 背景として扱う */
+      width: 220px;  /* 🔥 ここを大きく */
+      z-index: 0;
+      pointer-events: none; /* タップしても邪魔しない */
     }
 
     .img-top-left {
-      top: 10px;
-      left: 10px;
+      top: 0;
+      left: 0;
     }
 
     .img-top-right {
-      top: 10px;
-      right: 10px;
+      top: 0;
+      right: 0;
     }
 
     .img-bottom-left {
-      bottom: 10px;
-      left: 10px;
+      bottom: 0;
+      left: 0;
     }
 
     .img-bottom-right {
-      bottom: 10px;
-      right: 10px;
+      bottom: 0;
+      right: 0;
     }
 
     @media (max-width: 600px) {
+      img[class^="img-"] {
+        width: 160px; /* スマホでも大きめ */
+      }
+
       h1 {
-        font-size: 26px;
-        margin-top: 80px;
+        font-size: 28px;
+        margin-top: 180px;
       }
 
       button {
-        font-size: 18px;
-        padding: 14px 28px;
+        font-size: 20px;
+        padding: 18px 36px;
       }
 
       #result {
-        font-size: 22px;
-      }
-
-      img[class^="img-"] {
-        width: 90px; /* モバイルでは少し小さく調整 */
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 四隅に画像（背景的に扱う） -->
+  <!-- 四隅のイラスト -->
   <img src="neko.png" class="img-top-left" alt="猫">
   <img src="daiku.png" class="img-top-right" alt="大工">
   <img src="inu.png" class="img-bottom-left" alt="犬">
