@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ←追加 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>くじ引きイベント</title>
   <style>
     body {
@@ -12,19 +12,17 @@
       text-align: center;
       padding: 50px 20px;
       position: relative;
-      overflow: hidden;
       min-height: 100vh;
-      font-size: 18px; /* ←文字サイズUP */
     }
 
     h1 {
-      font-size: 28px; /* ←タイトルサイズUP */
-      margin-bottom: 40px;
+      font-size: 28px;
+      margin-bottom: 30px;
     }
 
     img[class^="img-"] {
       position: absolute;
-      width: 60px; /* ←以前は80px */
+      width: 60px;
       z-index: 10;
     }
 
@@ -39,7 +37,7 @@
     }
 
     .img-bottom-left {
-      bottom: 20px; /* ←余裕を持たせた */
+      bottom: 20px;
       left: 10px;
     }
 
@@ -48,7 +46,23 @@
       right: 10px;
     }
 
-    /* スマホ用の画像サイズさらに調整したい場合 */
+    button {
+      background-color: #ffa500;
+      color: #1c1c1c;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
     @media (max-width: 600px) {
       img[class^="img-"] {
         width: 50px;
@@ -58,8 +72,13 @@
         font-size: 24px;
       }
 
-      body {
-        font-size: 16px;
+      button {
+        font-size: 18px;
+        padding: 12px 24px;
+      }
+
+      #result {
+        font-size: 20px;
       }
     }
   </style>
@@ -73,6 +92,21 @@
   <img src="daiku.png" class="img-top-right" alt="大工">
   <img src="inu.png" class="img-bottom-left" alt="犬">
   <img src="onna.png" class="img-bottom-right" alt="女">
+
+  <!-- くじ引きボタン -->
+  <button onclick="drawLottery()">くじを引く</button>
+
+  <!-- 結果表示 -->
+  <div id="result"></div>
+
+  <!-- JavaScript -->
+  <script>
+    function drawLottery() {
+      const results = ["大当たり🎉", "当たり🎯", "はずれ😢", "もう一回チャレンジ🔁"];
+      const randomIndex = Math.floor(Math.random() * results.length);
+      document.getElementById("result").textContent = results[randomIndex];
+    }
+  </script>
 
 </body>
 </html>
