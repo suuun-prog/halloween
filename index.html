@@ -10,20 +10,46 @@
       color: #ffa500;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 50px 20px;
-      position: relative;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
     }
 
     h1 {
-      font-size: 28px;
-      margin-bottom: 30px;
+      font-size: 32px;
+      margin-top: 100px;
+      margin-bottom: 40px;
+      z-index: 1;
+    }
+
+    button {
+      background-color: #ffa500;
+      color: #1c1c1c;
+      border: none;
+      padding: 18px 36px;
+      font-size: 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 26px;
+      font-weight: bold;
+      z-index: 1;
     }
 
     img[class^="img-"] {
       position: absolute;
-      width: 60px;
-      z-index: 10;
+      width: 120px; /* ←画像を大きく */
+      z-index: 0;   /* 背景として扱う */
     }
 
     .img-top-left {
@@ -37,72 +63,51 @@
     }
 
     .img-bottom-left {
-      bottom: 20px;
+      bottom: 10px;
       left: 10px;
     }
 
     .img-bottom-right {
-      bottom: 20px;
+      bottom: 10px;
       right: 10px;
     }
 
-    button {
-      background-color: #ffa500;
-      color: #1c1c1c;
-      border: none;
-      padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 30px;
-    }
-
-    #result {
-      margin-top: 30px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
     @media (max-width: 600px) {
-      img[class^="img-"] {
-        width: 50px;
-      }
-
       h1 {
-        font-size: 24px;
+        font-size: 26px;
+        margin-top: 80px;
       }
 
       button {
         font-size: 18px;
-        padding: 12px 24px;
+        padding: 14px 28px;
       }
 
       #result {
-        font-size: 20px;
+        font-size: 22px;
+      }
+
+      img[class^="img-"] {
+        width: 90px; /* モバイルでは少し小さく調整 */
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>くじ引きイベント🎃</h1>
-
-  <!-- 四隅に画像 -->
+  <!-- 四隅に画像（背景的に扱う） -->
   <img src="neko.png" class="img-top-left" alt="猫">
   <img src="daiku.png" class="img-top-right" alt="大工">
   <img src="inu.png" class="img-bottom-left" alt="犬">
   <img src="onna.png" class="img-bottom-right" alt="女">
 
-  <!-- くじ引きボタン -->
+  <h1>くじ引きイベント🎃</h1>
   <button onclick="drawLottery()">くじを引く</button>
-
-  <!-- 結果表示 -->
   <div id="result"></div>
 
-  <!-- JavaScript -->
   <script>
     function drawLottery() {
-      const results = ["大当たり🎉", "当たり🎯", "はずれ😢", "もう一回チャレンジ🔁"];
+      const results = ["🎉 大当たり！", "🎯 当たり！", "😢 はずれ", "🔁 もう一回チャレンジ！"];
       const randomIndex = Math.floor(Math.random() * results.length);
       document.getElementById("result").textContent = results[randomIndex];
     }
