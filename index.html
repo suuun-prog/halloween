@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>くじ引きイベント</title>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #ffa500;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    img[class^="img-"] {
+      position: absolute;
+      width: 80px;
+      z-index: 10;
+    }
+
+    .img-top-left {
+      top: 10px;
+      left: 10px;
+    }
+
+    .img-top-right {
+      top: 10px;
+      right: 10px;
+    }
+
+    .img-bottom-left {
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .img-bottom-right {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    /* ボタンと結果の中央配置 */
+    .lottery-container {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>くじ引きイベント🎃</h1>
+
+  <!-- くじボタン＆結果表示 -->
+  <div class="lottery-container">
+    <button onclick="drawLottery()">くじを引く！</button>
+    <div id="result"></div>
+  </div>
+
+  <!-- 四隅に画像 -->
+  <img src="neko.png" class="img-top-left" alt="猫" width="80">
+  <img src="daiku.png" class="img-top-right" alt="大工" width="80">
+  <img src="inu.png" class="img-bottom-left" alt="犬" width="80">
+  <img src="onna.png" class="img-bottom-right" alt="女" width="80">
+
+  <script>
+    function drawLottery() {
+      const results = [
+        "🎉 大当たり！おめでとう！",
+        "😊 当たり！ラッキー！",
+        "😅 まあまあ…もう1回！",
+        "😢 ハズレ…次に期待！"
+      ];
+      const index = Math.floor(Math.random() * results.length);
+      document.getElementById("result").innerText = results[index];
+    }
+  </script>
+
+</body>
+</html>
