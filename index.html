@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ハロウィンくじ</title>
 
-  <!-- POPなフォント：Yusei Magic（Google Fonts） -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 
   <style>
     body {
       background: url('haikei.png') no-repeat center center fixed;
       background-size: cover;
+      color: #fffacd;
       font-family: 'Yusei Magic', sans-serif;
       text-align: center;
       margin: 0;
@@ -20,17 +21,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: flex-start; /* 上寄せ */
       box-sizing: border-box;
+      padding-top: 120px; /* 上の余白を設定 */
     }
 
     h1 {
       font-size: 36px;
-      margin-top: 200px;
-      margin-bottom: 40px;
-      z-index: 1;
+      margin-top: 0;
+      margin-bottom: 30px;
       text-shadow: 2px 2px 4px #000;
+      color: #ff9900; /* オレンジに変更 */
     }
 
     button {
@@ -41,16 +42,15 @@
       font-size: 24px;
       border-radius: 12px;
       cursor: pointer;
-      z-index: 1;
       box-shadow: 2px 2px 6px #000;
     }
 
     #result {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 28px;
       font-weight: bold;
-      z-index: 1;
       text-shadow: 1px 1px 3px #000;
+      color: #ff9900; /* オレンジに変更 */
     }
 
     img[class^="img-"] {
@@ -77,7 +77,7 @@
 
       h1 {
         font-size: 28px;
-        margin-top: 180px;
+        margin-top: 0;
       }
 
       button {
@@ -93,12 +93,13 @@
 </head>
 <body>
 
-  <!-- イラスト（新しいジグザグ配置） -->
+  <!-- イラスト配置 -->
   <img src="neko.png" class="img-1" alt="猫">
   <img src="daiku.png" class="img-2" alt="大工">
   <img src="inu.png" class="img-3" alt="犬">
   <img src="onna.png" class="img-4" alt="女">
 
+  <!-- 中央コンテンツ -->
   <h1>🎃 ハロウィンくじ</h1>
   <button onclick="drawLottery()">くじを引く</button>
   <div id="result"></div>
@@ -126,4 +127,3 @@
 
 </body>
 </html>
-
